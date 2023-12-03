@@ -10,11 +10,13 @@ Chart.register(...registerables);
   styleUrls: ['./charts.component.css'],
 })
 export class ChartsComponent implements OnInit {
-  constructor(private router: Router, private _empService: AuthService) {}
+  private chart: Chart | null = null;
   chartdata: any;
   labeldata: any[] = [];
   realdata: any[] = [];
   chartColors: string[] = ['#FF5733', '#337DFF', '#FFCD33', '#33FF41', '#B133FF', '#FF3381'];
+
+  constructor(private router: Router, private _empService: AuthService) {}
 
   ngOnInit(): void {
     this._empService.Getchartinfo().subscribe((result) => {
@@ -24,47 +26,47 @@ export class ChartsComponent implements OnInit {
           this.labeldata.push(this.chartdata[i].education);
           this.realdata.push(this.chartdata[i].experience);
         }
-
+        this.RenderChart(this.labeldata,this.realdata,'pie','piechart');
         this.RenderChart(this.labeldata, this.realdata, 'bar', 'barchart');
-        this.RenderChart(this.labeldata, this.realdata, 'pie', 'piechart');
-        this.RenderChart(this.labeldata, this.realdata, 'doughnut', 'dochart');
-        this.RenderChart(this.labeldata, this.realdata, 'polarArea', 'pochart');
-        this.RenderChart(this.labeldata, this.realdata, 'radar', 'rochart');
+        
       }
     });
-    
+  }
+
+  onChartTypeChange(event: any) {
+    const selectedChartType = event.target.value;
+    this.RenderChart(this.labeldata, this.realdata, selectedChartType, 'chartCanvas');
   }
 
   RenderChart(labeldata: any, maindata: any, type: any, id: any) {
-    const ctx = document.getElementById(id);    
+    const ctx = document.getElementById(id) as HTMLCanvasElement;
 
-      const backgroundColors = this.chartColors.slice(0, maindata.length);
+    // if (this.chart) {
+    //   this.chart.destroy();
+    // }
 
-      new Chart(id, {
-        type: type,
-        data: {
-          labels: labeldata,
-          datasets: [
-            {
-              label: '# of Votes',
-              data: maindata,
-              backgroundColor: backgroundColors,
-              borderColor: [
-                'rgba(255, 99, 132, 1)'
-              ],
-              borderWidth: 3,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
+    this.chart = new Chart(ctx, {
+      type: type,
+      data: {
+        labels: labeldata,
+        datasets: [
+          {
+            label: '# of Votes',
+            data: maindata,
+            backgroundColor: this.chartColors.slice(0, maindata.length),
+            borderColor: ['rgba(255, 99, 132, 1)'],
+            borderWidth: 3,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
           },
         },
-      });
-    
+      },
+    });
   }
 
   logOut() {

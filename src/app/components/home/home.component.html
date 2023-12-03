@@ -10,14 +10,16 @@
       <button mat-raised-button (click)="openAddEditEmpForm()" > ADD EMPLOYEE</button>
     </mat-toolbar>
   
-    <button mat-button [matMenuTriggerFor]="menu"><mat-icon></mat-icon></button>
-    <mat-menu #menu="matMenu">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon> Menu
+    </button>
+    
+    <mat-menu #menu="matMenu" class="custom-menu">
       <button mat-menu-item> <a [routerLink]="['/Charts']">Chart</a> </button>
       <button mat-menu-item><a [routerLink]="['/home']">Datatable</a></button>
       <button mat-menu-item><a [routerLink]="['/Upload']">Upload</a></button>
-      
-      <p-button label="Sign out" (click)="logOut()"></p-button>
-    </mat-menu>
+      <p-button label="Sign out" (click)="logOut()"></p-button>     </mat-menu>
+    
   </div>
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort>

@@ -11,6 +11,15 @@
       <button mat-menu-item> <a [routerLink]="['/Charts']">Chart</a> </button>
       <button mat-menu-item><a [routerLink]="['/home']">Datatable</a></button>
       <button mat-menu-item><a [routerLink]="['/Upload']">Upload</a></button>
-      <p-button label="Sign out" (click)="logOut()"></p-button>
+       <p-button label="Sign out" (click)="logOut()"></p-button> 
     </mat-menu>
   </div>
+  <div>
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="onUpload()">Upload</button>
+  
+    <div *ngIf="uploadProgress">
+      <p>Transfert en cours : {{ uploadProgress }}%</p>
+    </div>
+  </div>
+  

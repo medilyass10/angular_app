@@ -3,21 +3,47 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Assurez-vous que le z-index est plus élevé que les autres éléments si nécessaire */
-  background-color: blue;
+  z-index: 1000;
+  background-color: #007bff;
+  color: white;
   height: 48px;
-  margin-bottom: 20px;
 }
+
+.menu-trigger-button {
+  margin-top: -8px;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }
+.custom-menu{
+  top: 0%;
+}
 
-.main-body{
-  max-width: 1248px;
-  margin: 0 auto;
-  padding-top: 20px;
+@media only screen and (max-width: 768px) {
+  .table-container {
+    flex-direction: column;
+    align-items: center; 
+  }
 
-  mat-form-field{
-    width: 100%;
+  .table-container .col-lg-6 {
+    width: 100%; 
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+  .table-container .col-lg-6 {
+    flex: 1 0 48%; 
+  }
+}
+
+
+@media only screen and (min-width: 1201px) {
+  .table-container .col-lg-6 {
+    flex: 1 0 48%; 
   }
 }
