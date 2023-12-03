@@ -4,7 +4,9 @@
   left: 0;
   right: 0;
   z-index: 1000; /* Assurez-vous que le z-index est plus élevé que les autres éléments si nécessaire */
-  background-color: burlywood;
+  background-color: blue;
+  height: 48px;
+  margin-bottom: 20px;
 }
 .example-spacer {
   flex: 1 1 auto;

@@ -12,9 +12,9 @@
   
     <button mat-button [matMenuTriggerFor]="menu"><mat-icon></mat-icon></button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Chart</button>
-      <button mat-menu-item>Datatable</button>
-      <button mat-menu-item>Upload</button>
+      <button mat-menu-item> <a [routerLink]="['/Charts']">Chart</a> </button>
+      <button mat-menu-item><a [routerLink]="['/home']">Datatable</a></button>
+      <button mat-menu-item><a [routerLink]="['/Upload']">Upload</a></button>
       
       <p-button label="Sign out" (click)="logOut()"></p-button>
     </mat-menu>
@@ -66,7 +66,7 @@
         <td mat-cell *matCellDef="let row"> {{row.experience}} </td>
       </ng-container>
       <ng-container matColumnDef="package">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Package </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Salaire </th>
         <td mat-cell *matCellDef="let row"> {{row.package |currency:'MAD' }}k </td>
       </ng-container>
       <ng-container matColumnDef="action">
